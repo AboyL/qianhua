@@ -64,19 +64,18 @@ app.use(async (ctx, next) => {
 
 // routes
 // 实现路由的自动加载
-glob('/routes/**/*.js', {
+const files=glob.sync('/routes/**/!(error).js', {
   cwd: __dirname,
   root: __dirname
-}, (err, files) => {
-  if (err) {
-    console.error(err)
-    process.exit()
-  }
-  files.forEach(routerPath => {
-    const router = require(routerPath)
-    app.use(router.routes(), router.allowedMethods())
-  })
 })
+files.forEach(routerPath => {
+  const router = require(routerPath)
+  app.use(router.routes(), router.allowedMethods())
+})
+
+// routes
+const errorViewRouter = require('./routes/view/error')
+app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods()) // 404 路由注册到最后面
 
 // error-handling
 app.on('error', (err, ctx) => {

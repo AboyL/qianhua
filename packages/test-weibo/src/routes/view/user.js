@@ -22,6 +22,7 @@ function getLoginInfo (ctx) {
 }
 
 router.get('/login', async (ctx, next) => {
+  console.log('xxxx')
   await ctx.render('login', getLoginInfo(ctx))
 })
 
