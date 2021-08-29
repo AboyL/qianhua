@@ -10,7 +10,7 @@ const logger = require('koa-logger')
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 const koaStatic = require('koa-static')
-
+const glob = require('glob')
 const { REDIS_CONF } = require('./conf/db')
 const { isProd } = require('./utils/env')
 const { SESSION_SECRET_KEY } = require('./conf/secretKeys')
@@ -22,7 +22,7 @@ onerror(app)
 // middlewares
 // 处理post请求
 app.use(bodyparser({
-  enableTypes:['json', 'form', 'text']
+  enableTypes: ['json', 'form', 'text']
 }))
 app.use(json())
 
@@ -63,14 +63,20 @@ app.use(async (ctx, next) => {
 })
 
 // routes
-const userViewRouter = require('./routes/view/user')
-const userAPIRouter = require('./routes/api/user')
-const errorViewRouter = require('./routes/view/error')
-const utilsAPIRouter = require('./routes/api/utils')
-app.use(userAPIRouter.routes(), userAPIRouter.allowedMethods())
-app.use(userViewRouter.routes(), userViewRouter.allowedMethods())
-app.use(errorViewRouter.routes(), errorViewRouter.allowedMethods()) // 404 路由注册到最后面
-app.use(utilsAPIRouter.routes(), utilsAPIRouter.allowedMethods())
+// 实现路由的自动加载
+glob('/routes/**/*.js', {
+  cwd: __dirname,
+  root: __dirname
+}, (err, files) => {
+  if (err) {
+    console.error(err)
+    process.exit()
+  }
+  files.forEach(routerPath => {
+    const router = require(routerPath)
+    app.use(router.routes(), router.allowedMethods())
+  })
+})
 
 // error-handling
 app.on('error', (err, ctx) => {
