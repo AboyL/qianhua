@@ -1,8 +1,3 @@
-/**
- * @description 首页 controller
- * @author 双越老师
- */
-
 const xss = require('xss')
 const { createBlog } = require('../services/blog')
 const { SuccessModel, ErrorModel } = require('../model/ResModel')

@@ -1,8 +1,3 @@
-/**
- * @description 微博数据相关的工具方法
- * @author 双越老师
- */
-
 const fs = require('fs')
 const path = require('path')
 const ejs = require('ejs')

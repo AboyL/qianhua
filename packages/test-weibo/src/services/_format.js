@@ -1,8 +1,3 @@
-/**
- * @description 数据格式化
- * @author 双越老师
- */
-
 const { DEFAULT_PICTURE } = require('../conf/constant')
 const { timeFormat } = require('../utils/dt')
 
