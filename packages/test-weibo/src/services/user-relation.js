@@ -1,11 +1,12 @@
 const { User, UserRelation } = require('../db/model/index')
 const { formatUser } = require('./_format')
+const Sequelize = require('sequelize')
 
 /**
- * 获取关注该用户的用户列表，即该用户的粉丝
- * @param {number} followerId 被关注人的 id
- */
-async function getUsersByFollower(followerId) {
+  * 获取关注该用户的用户列表，即该用户的粉丝
+  * @param {number} followerId 被关注人的 id
+  */
+async function getUsersByFollower (followerId) {
   const result = await User.findAndCountAll({
     attributes: ['id', 'userName', 'nickName', 'picture'],
     order: [
@@ -15,7 +16,10 @@ async function getUsersByFollower(followerId) {
       {
         model: UserRelation,
         where: {
-          followerId
+          followerId,
+          userId: {
+            [Sequelize.Op.ne]: followerId
+          }
         }
       }
     ]
@@ -34,10 +38,10 @@ async function getUsersByFollower(followerId) {
 }
 
 /**
- * 获取关注人列表
- * @param {number} userId userId
- */
-async function getFollowersByUser(userId) {
+  * 获取关注人列表
+  * @param {number} userId userId
+  */
+async function getFollowersByUser (userId) {
   const result = await UserRelation.findAndCountAll({
     order: [
       ['id', 'desc']
@@ -49,7 +53,10 @@ async function getFollowersByUser(userId) {
       }
     ],
     where: {
-      userId
+      userId,
+      followerId: {
+        [Sequelize.Op.ne]: userId
+      }
     }
   })
   // result.count 总数
@@ -71,11 +78,11 @@ async function getFollowersByUser(userId) {
 }
 
 /**
- * 添加关注关系
- * @param {number} userId 用户 id
- * @param {number} followerId 被关注用户 id
- */
-async function addFollower(userId, followerId) {
+  * 添加关注关系
+  * @param {number} userId 用户 id
+  * @param {number} followerId 被关注用户 id
+  */
+async function addFollower (userId, followerId) {
   const result = await UserRelation.create({
     userId,
     followerId
@@ -84,11 +91,11 @@ async function addFollower(userId, followerId) {
 }
 
 /**
- * 删除关注关系
- * @param {number} userId 用户 id
- * @param {number} followerId 被关注用户 id
- */
-async function deleteFollower(userId, followerId) {
+  * 删除关注关系
+  * @param {number} userId 用户 id
+  * @param {number} followerId 被关注用户 id
+  */
+async function deleteFollower (userId, followerId) {
   const result = await UserRelation.destroy({
     where: {
       userId,

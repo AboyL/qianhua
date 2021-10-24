@@ -3,10 +3,10 @@ const { SuccessModel } = require('../model/ResModel')
 const { getSquareCacheList } = require('../cache/blog')
 
 /**
- * 获取广场的微博列表
- * @param {number} pageIndex pageIndex
- */
-async function getSquareBlogList(pageIndex = 0) {
+  * 获取广场的微博列表
+  * @param {number} pageIndex pageIndex
+  */
+async function getSquareBlogList (pageIndex = 0) {
   const result = await getSquareCacheList(pageIndex, PAGE_SIZE)
   const blogList = result.blogList
 

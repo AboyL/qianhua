@@ -3,11 +3,11 @@ const { PAGE_SIZE } = require('../conf/constant')
 const { SuccessModel } = require('../model/ResModel')
 
 /**
- * 获取个人主页微博列表
- * @param {string} userName 用户名
- * @param {number} pageIndex 当前页面
- */
-async function getProfileBlogList(userName, pageIndex = 0) {
+  * 获取个人主页微博列表
+  * @param {string} userName 用户名
+  * @param {number} pageIndex 当前页面
+  */
+async function getProfileBlogList (userName, pageIndex = 0) {
   const result = await getBlogListByUser({
     userName,
     pageIndex,

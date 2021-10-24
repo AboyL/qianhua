@@ -11,14 +11,15 @@ const {
   registerFailInfo,
   loginFailInfo,
   deleteUserFailInfo,
+  changeInfoFailInfo,
   changePasswordFailInfo
 } = require('../model/ErrorInfo')
 const doCrypto = require('../utils/cryp')
 
 /**
- * 用户名是否存在
- * @param {string} userName 用户名
- */
+* 用户名是否存在
+* @param {string} userName 用户名
+*/
 async function isExist(userName) {
   const userInfo = await getUserInfo(userName)
   if (userInfo) {
@@ -31,14 +32,13 @@ async function isExist(userName) {
 }
 
 /**
- * 注册
- * @param {string} userName 用户名
- * @param {string} password 密码
- * @param {number} gender 性别（1 男，2 女，3 保密）
- */
+* 注册
+* @param {string} userName 用户名
+* @param {string} password 密码
+* @param {number} gender 性别（1 男，2 女，3 保密）
+*/
 async function register({ userName, password, gender }) {
   const userInfo = await getUserInfo(userName)
-  console.log(userInfo)
   if (userInfo) {
     // 用户名已存在
     return new ErrorModel(registerUserNameExistInfo)
@@ -58,11 +58,11 @@ async function register({ userName, password, gender }) {
 }
 
 /**
- * 登录
- * @param {Object} ctx koa2 ctx
- * @param {string} userName 用户名
- * @param {string} password 密码
- */
+* 登录
+* @param {Object} ctx koa2 ctx
+* @param {string} userName 用户名
+* @param {string} password 密码
+*/
 async function login(ctx, userName, password) {
   // 获取用户信息
   const userInfo = await getUserInfo(userName, doCrypto(password))
@@ -79,9 +79,9 @@ async function login(ctx, userName, password) {
 }
 
 /**
- * 删除当前用户
- * @param {string} userName 用户名
- */
+* 删除当前用户
+* @param {string} userName 用户名
+*/
 async function deleteCurUser(userName) {
   const result = await deleteUser(userName)
   if (result) {
@@ -93,12 +93,12 @@ async function deleteCurUser(userName) {
 }
 
 /**
- * 修改个人信息
- * @param {Object} ctx ctx
- * @param {string} nickName 昵称
- * @param {string} city 城市
- * @param {string} picture 头像
- */
+* 修改个人信息
+* @param {Object} ctx ctx
+* @param {string} nickName 昵称
+* @param {string} city 城市
+* @param {string} picture 头像
+*/
 async function changeInfo(ctx, { nickName, city, picture }) {
   const { userName } = ctx.session.userInfo
   if (!nickName) {
