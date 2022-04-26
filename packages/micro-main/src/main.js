@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import './index.css'
-import { registerMicroApps } from '@lixingzhi/trunk'
+import { registerMicroApps, start } from '@lixingzhi/trunk'
 
 registerMicroApps([
   {
@@ -18,5 +18,6 @@ registerMicroApps([
     activeRule: '/vue3',
   }
 ])
+start()
 
 createApp(App).use(router()).mount('#micro_web_main_app')
