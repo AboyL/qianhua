@@ -1,0 +1,25 @@
+{
+    "name": "@lixingzhi/trunk",
+    "version": "0.0.1",
+    "description": "一个微前端框架",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/vue3-essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "author": "aboyl",
+    "license": "ISC"
+}

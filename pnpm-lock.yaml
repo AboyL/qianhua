@@ -12,6 +12,7 @@ importers:
 
   packages/micro-main:
     specifiers:
+      '@lixingzhi/trunk': 0.0.1
       '@vue/cli-plugin-babel': ~4.5.0
       '@vue/cli-plugin-eslint': ~4.5.0
       '@vue/cli-service': ~4.5.0
@@ -31,6 +32,7 @@ importers:
       vue: ^3.0.0-0
       vue-router: ^4.0.0-alpha.6
     dependencies:
+      '@lixingzhi/trunk': link:../trunk
       core-js: 3.22.0
       import-html-entry: 1.12.0
       lodash: 4.17.21
@@ -51,7 +53,7 @@ importers:
       eslint-plugin-vue: 7.20.0_eslint@6.8.0
       qiankun: 2.7.0
 
-  packages/micro-test-react-16:
+  packages/micro-react-16:
     specifiers:
       '@babel/core': ^7.6.4
       '@babel/preset-env': ^7.6.3
@@ -241,6 +243,9 @@ importers:
       nodemon: 1.19.4
       pre-commit: 1.2.2
       supertest: 4.0.2
+
+  packages/trunk:
+    specifiers: {}
 
 packages:
 
@@ -15369,7 +15374,7 @@ packages:
     resolution: {integrity: sha512-7Wjy+9E3WwLOEL30D+m8TSTF7qJJUJLONBnwQp0518siuMxUQUbgZwssaFX+QKlZkjHZcw/IpZCt/H0srrntSg==, tarball: http://nexus.saas.hand-china.com/repository/hzero-npm-group/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz}
     engines: {node: '>=6'}
     dependencies:
-      ts-pnp: 1.2.0_typescript@4.6.3
+      ts-pnp: 1.2.0
     transitivePeerDependencies:
       - typescript
     dev: false
@@ -15378,7 +15383,7 @@ packages:
     resolution: {integrity: sha512-2Rb3vm+EXble/sMXNSu6eoBx8e79gKqhNq9F5ZWW6ERNCTE/Q0wQNne5541tE5vKjfM8hpNCYL+LGc1YTfI0dg==, tarball: http://nexus.saas.hand-china.com/repository/hzero-npm-group/pnp-webpack-plugin/-/pnp-webpack-plugin-1.7.0.tgz}
     engines: {node: '>=6'}
     dependencies:
-      ts-pnp: 1.2.0_typescript@4.6.3
+      ts-pnp: 1.2.0
     transitivePeerDependencies:
       - typescript
     dev: true
@@ -17172,7 +17177,7 @@ packages:
       semver: 7.3.2
       style-loader: 1.3.0_webpack@4.44.2
       terser-webpack-plugin: 4.2.3_webpack@4.44.2
-      ts-pnp: 1.2.0_typescript@4.6.3
+      ts-pnp: 1.2.0
       typescript: 4.6.3
       url-loader: 4.1.1_file-loader@6.1.1+webpack@4.44.2
       webpack: 4.44.2
@@ -19519,7 +19524,7 @@ packages:
       yn: 3.1.1
     dev: false
 
-  /ts-pnp/1.2.0_typescript@4.6.3:
+  /ts-pnp/1.2.0:
     resolution: {integrity: sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw==, tarball: http://nexus.saas.hand-china.com/repository/hzero-npm-group/ts-pnp/-/ts-pnp-1.2.0.tgz}
     engines: {node: '>=6'}
     peerDependencies:
@@ -19527,8 +19532,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-    dependencies:
-      typescript: 4.6.3
 
   /tsconfig-paths/3.14.1:
     resolution: {integrity: sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==, tarball: http://nexus.saas.hand-china.com/repository/hzero-npm-group/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz}
