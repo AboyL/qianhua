@@ -10,8 +10,10 @@ export const patchRouter = (globalEvent, eventName) => {
 }
 
 
-export const matchPath = (path) => {
-  const { pathname } = window.location
+export const matchPath = (path, pathname = window.location.pathname) => {
+  if (!path) {
+    return false
+  }
   let mPath = path[path.length - 1] === '/' ? path : path + '/'
   let mPathname = pathname[pathname.length - 1] === '/' ? pathname : pathname + '/'
 
@@ -24,6 +26,22 @@ export const getCurrentApp = () => {
   return currentApp && currentApp.length ? currentApp[0] : {}
 }
 
+export const findAppByRoute = (path) => {
+  const currentApp = getList().filter(item => matchPath(item['activeRule'], path))
+  return currentApp && currentApp.length ? currentApp[0] : {}
+}
+
+
 export const isTurnChild = () => {
-  return matchPath(window.__CURRENT_SUB_APP__)
+  const change = matchPath(window.__CURRENT_SUB_APP__)
+  if (change) {
+    // 路由无变化
+    return false
+  }
+  // 子应用存在切换，这个时候应该把上一次的路径进行保存，然后根据上一次的路径获取到对应子模块进行卸载操作
+  window.__ORIGIN_APP__ = window.__CURRENT_SUB_APP__;
+  const app = getCurrentApp()
+  window.__CURRENT_SUB_APP__ = app.activeRule
+  return true;
+
 }
