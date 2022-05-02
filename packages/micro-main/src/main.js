@@ -9,7 +9,7 @@ import { loading } from './store'
 registerMicroApps([
   {
     name: 'react16',// 唯一
-    entry: '//localhost:9002/',
+    entry: '//localhost:9003/',
     container: '#micro-container',
     activeRule: '/react16',
   },

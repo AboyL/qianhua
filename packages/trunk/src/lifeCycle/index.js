@@ -1,4 +1,5 @@
 import { getMainLifecycle } from "../const/mainLifeCycle"
+import { loadHtml } from "../loader"
 import { findAppByRoute } from "../utils"
 
 export const lifecycle = async () => {
@@ -19,7 +20,7 @@ export const lifecycle = async () => {
   }
 
   // 执行主应用的 beforeLoad方法 渲染子应用
-  const app =await beforeLoad(nextApp)
+  const app = await beforeLoad(nextApp)
 
   // 执行真正的渲染的逻辑
 
@@ -38,7 +39,7 @@ export const beforeLoad = async (app) => {
   app && app.beforeLoad && app.beforeLoad()
 
   // 预留出来渲染的内容
-  const subApp = {}
+  const subApp = await loadHtml(app)
   subApp && subApp.beforeLoad && subApp.beforeLoad()
 
   return subApp

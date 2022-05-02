@@ -7,7 +7,7 @@ export const rewriteRouter = () => {
   window.history.replaceState = patchRouter(window.history.replaceState, 'micro_replace')
   window.addEventListener('micro_push', turnApp)
   window.addEventListener('micro_replace', turnApp)
-  window.onpopstate = () => {
-    turnApp()
+  window.onpopstate = async () => {
+    await turnApp()
   }
 }

@@ -6,5 +6,4 @@ export const turnApp = async () => {
     return
   }
   await lifecycle()
-  console.log('路由切换了')
 }
