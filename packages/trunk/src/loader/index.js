@@ -1,4 +1,4 @@
-import { performScriptForEval } from "../sandbox"
+import { sandBox } from "../sandbox"
 import { fetchResource } from "../utils/fetchResource"
 
 export const loadHtml = async (app) => {
@@ -8,7 +8,7 @@ export const loadHtml = async (app) => {
   ct.innerHTML = dom
   // 执行所有的 js 内容
   scripts.forEach(script => {
-    performScriptForEval(script)
+    sandBox(script,app)
   })
 
   return app

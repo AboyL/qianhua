@@ -8,6 +8,7 @@ const render = () => {
 }
 
 if (!window.__MICRO_WEB__) {
+  console.log('__MICRO_WEB__')
   render()
 }
 
@@ -16,6 +17,7 @@ export const bootstrap = () => {
 }
 
 export const mount = () => {
+  console.log('mount')
   render()
 }
 
