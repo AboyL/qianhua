@@ -14,10 +14,10 @@ registerMicroApps([
     activeRule: '/react16',
   },
   {
-    name: 'vue3',
-    entry: '//localhost:9003/',
+    name: 'reactOther',
+    entry: '//localhost:9002/',
     container: '#micro-container',
-    activeRule: '/vue3',
+    activeRule: '/react-other',
   }
 ], {
   beforeLoad: [

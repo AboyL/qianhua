@@ -16,6 +16,9 @@ export const lifecycle = async () => {
   // 如果存在上一个子应用 那么先执行上一个子应用的 unmount 方法
   // 再执行全局的 destoryed 方法
   if (prevApp) {
+    if(prevApp.proxy){
+      prevApp.proxy.inactive()
+    }
     destoryed(prevApp)
   }
 

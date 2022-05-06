@@ -7,9 +7,9 @@ export const NAV_LIST = [
     hash: '',
   },
   {
-    name: '测试vue3',
+    name: '测试react-other',
     status: false,
     value: 1,
-    url: '/vue3',
+    url: '/react-other',
   },
 ]

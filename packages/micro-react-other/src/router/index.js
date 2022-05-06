@@ -4,9 +4,10 @@ import Hello from '../pages/hello/index.jsx';
 
 const BasicMap = () => {
   console.log('basic window.a', window.a)
+
   return (
     <div>
-      <h1>micro-react-16 header</h1>
+      <h1>micro-react-other header</h1>
       <HashRouter>
         <Switch>
           {/* App页面 */}

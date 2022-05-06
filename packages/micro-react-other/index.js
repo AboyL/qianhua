@@ -18,8 +18,6 @@ export const bootstrap = () => {
 
 export const mount = () => {
   console.log('mount')
-  // 测试沙箱
-  window.a='1'
   render()
 }
 
