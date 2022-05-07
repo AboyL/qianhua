@@ -3,7 +3,7 @@ import { fetchResource } from "../utils/fetchResource"
 
 export const loadHtml = async (app) => {
   const { entry, container } = app
-  const [dom, scripts] = await parseHtml(entry)
+  const [dom, scripts] = await parseHtml(entry,app.name)
   const ct = document.querySelector(container)
   ct.innerHTML = dom
   // 执行所有的 js 内容
@@ -14,7 +14,14 @@ export const loadHtml = async (app) => {
   return app
 }
 
-export const parseHtml = async (entry) => {
+
+const cache = {} // 根据子应用的name来做缓存
+
+export const parseHtml = async (entry,name) => {
+  if (cache[name]) {
+    return cache[name]
+  }
+
   const html = await fetchResource(entry)
 
   const div = document.createElement('div')
@@ -28,6 +35,8 @@ export const parseHtml = async (entry) => {
     scriptUrl.map(async (sc) => await fetchResource(sc))
   )
   scripts = scripts.concat(outScripts)
+
+  cache[name] = [dom, scripts]
 
   return [dom, scripts]
 }

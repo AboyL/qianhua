@@ -12,6 +12,9 @@ registerMicroApps([
     entry: '//localhost:9003/',
     container: '#micro-container',
     activeRule: '/react16',
+    appInfo:{
+      loading
+    }
   },
   {
     name: 'reactOther',

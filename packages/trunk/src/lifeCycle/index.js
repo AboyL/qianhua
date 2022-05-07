@@ -51,7 +51,10 @@ export const beforeLoad = async (app) => {
 
 
 export const mounted = async (app) => {
-  app && app.mount && app.mount()
+  app && app.mount && app.mount({
+    appInfo: app.appInfo,
+    entry: app.entry
+  })
   // 对应的执行以下主应用的生命周期
   await runMainLifeCycle('mounted')
 }

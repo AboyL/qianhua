@@ -16,10 +16,11 @@ export const bootstrap = () => {
   console.log('bootstrap')
 }
 
-export const mount = () => {
+export const mount = ({ appInfo }) => {
   console.log('mount')
+  console.log('appInfo', appInfo)
   // 测试沙箱
-  window.a='1'
+  window.a = '1'
   render()
 }
 
